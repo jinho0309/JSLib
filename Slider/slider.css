@@ -24,15 +24,18 @@ div#control{
 }
 div#point{
     position : absolute;
+    height : 20px;
+    line-height : 25px;
     left : 100px;
     bottom: 6px;
 }
 
 div#point span{
-    display : block;
-    float : left;
+    display : inline-block;
+    vertical-align: middle;
     background: #ffffff;
-    margin : 0 5px 0 5px;
+    margin-left : 5px;
+    margin-right: 5px;
     width : 15px;
     height : 15px;
     border-radius: 15px;
