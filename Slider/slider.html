@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Slider</title>
+    <link rel="stylesheet" href="slider.css">
+</head>
+
+<body>
+    <div id="mainView">
+        <span><img src="/img/1.jpg" alt=""></span>
+        <span><img src="/img/2.jpg" alt=""></span>
+        <span><img src="/img/3.jpg" alt=""></span>
+        <div id="point">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div id="control">
+            <img src="/img/btn_play.gif" alt="" onclick="slide_start();">
+            <img src="/img/btn_pause.gif" alt="" onclick="slide_stop();">
+        </div>
+    </div>
+    <script>
+        //이미지 구하기
+        var img = document.querySelectorAll("#mainView span img");
+        //이미지 갯수
+        var maxLength = img.length;
+        //점 구하기
+        var dot = document.querySelectorAll("#point span");
+
+        var currentNo = maxLength - 1;
+        var handle = null;
+
+
+
+        var changeImg = function() {
+            console.log(currentNo);
+            img[currentNo].style.left = 300 + "px";
+            currentNo--;
+            changeDot();
+
+            if (currentNo < 0) {
+                currentNo = maxLength - 1;
+                init_();
+            }
+        }
+
+        function init_() {
+            console.log("init");
+            for (var i = 0; i < maxLength; i++){
+                img[i].style.left = 0;
+            }
+            changeDot();
+        }
+
+        function changeDot(){
+            for(var i = 0 ; i < maxLength ; i++){
+                if(currentNo==i)
+                    dot[i].style.background="#FFBF00";
+                else{
+                    dot[i].style.background="#ffffff";
+                }
+            }
+        }
+
+
+        function slide_start() {
+            if (handle === null)
+                handle = setInterval(changeImg, 2000);
+
+        }
+
+        function slide_stop() {
+            clearInterval(handle);
+            handle = null;
+
+        }
+        slide_start();
+        init_();
+    </script>
+</body>
+
+</html>
